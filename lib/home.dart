@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
+
 import 'package:flutter_application_2/consts.dart';
+import 'package:flutter_application_2/info.dart';
+import 'package:flutter_application_2/medicine.dart';
+import 'package:flutter_application_2/contactus.dart';
+import 'package:flutter_application_2/protocol_schedule.dart';
+import 'package:flutter_application_2/side_effect.dart';
+import 'package:flutter_application_2/side_effect_history.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key});
@@ -22,14 +29,14 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-      statusBarColor: Colors.white,
+      statusBarColor: primaryBackGround,
       statusBarBrightness: Brightness.dark,
       statusBarIconBrightness: Brightness.dark,
     ));
 
     return CupertinoTabScaffold(
       tabBar: CupertinoTabBar(
-        backgroundColor: Colors.white,
+        backgroundColor: primaryBackGround,
         currentIndex: currentIndex,
         onTap: onTabTapped,
         items: const <BottomNavigationBarItem>[
@@ -51,6 +58,7 @@ class _HomeState extends State<Home> {
             break;
           case 1:
             body = buildProfileTab();
+
             break;
         }
         return Scaffold(
@@ -62,75 +70,285 @@ class _HomeState extends State<Home> {
 
   Widget buildHomeTab() {
     return Container(
-      color: Colors.white,
+      color: primaryBackGround,
       padding: const EdgeInsets.symmetric(
         horizontal: 35,
         vertical: 20,
       ),
       alignment: Alignment.center,
       child: Container(
-        // Password textfield
-        child: Container(
-          alignment: Alignment.center,
-          height: 400,
-          width: 400,
-          color: Colors.white,
-          child: Column(
-            children: [
-              const SizedBox(
-                height: 80,
-              ),
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                    fixedSize: Size(300, 80),
-                    backgroundColor: violat // Background color
-
-                    ),
-                onPressed: () {
-                  // TODO: Add button 1 logic
-                },
-                child: Text('Medicine'),
-              ),
-              const SizedBox(
-                height: 30,
-              ),
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                    fixedSize: Size(300, 80),
-                    backgroundColor: lightCyan // Background color
-
-                    // backgroundColor: Colors.cyan // Background color
-                    ),
-                onPressed: () {
-                  // TODO: Add button 2 logic
-                },
-                child: Text('Side Effects'),
-              ),
-              const SizedBox(
-                height: 30,
-              ),
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                    fixedSize: Size(300, 80),
-                    backgroundColor: lightOrange // Background color
-
-                    // backgroundColor: Colors.cyan // Background color
-                    ),
-                onPressed: () {
-                  // TODO: Add button 3 logic
-                },
-                child: Text('Contact Us'),
-              ),
-            ],
+        child: Column(children: [
+          const SizedBox(
+            height: 90,
           ),
-        ),
+          const Row(children: [
+            Text(
+              "Hi Ali !",
+              style: TextStyle(
+                color: textColor,
+                fontSize: 30,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ]),
+
+          const SizedBox(
+            height: 80,
+          ),
+          // Password textfield
+          Container(
+            alignment: Alignment.center,
+            color: primaryBackGround,
+            child: Column(
+              children: [
+                const SizedBox(
+                  height: 80,
+                ),
+                ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                        fixedSize: Size(300, 80), backgroundColor: violat),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => Medicine()),
+                        //  MaterialPageRoute(builder: (context) => Tester()),
+                      );
+                    },
+                    child: const Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.medication_liquid,
+                          color: textColor,
+                        ),
+                        SizedBox(width: 20),
+                        Text(
+                          'Medicine',
+                          style: TextStyle(
+                            color: textColor,
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        SizedBox(width: 20),
+                        Icon(
+                          Icons.arrow_right_alt_rounded,
+                          color: textColor,
+                          size: 40,
+                        ),
+                      ],
+                    )),
+                const SizedBox(
+                  height: 30,
+                ),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      fixedSize: Size(300, 80), backgroundColor: lightCyan),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Side_Effect()),
+                      //  MaterialPageRoute(builder: (context) => Tester()),
+                    );
+                  },
+                  child: const Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(
+                        Icons.medical_services_sharp,
+                        color: textColor,
+                      ),
+                      SizedBox(width: 20),
+                      Text(
+                        'Side Effects',
+                        style: TextStyle(
+                          color: textColor,
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      SizedBox(width: 40),
+                      Icon(
+                        Icons.arrow_right_alt_rounded,
+                        color: textColor,
+                        size: 40,
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(
+                  height: 30,
+                ),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      fixedSize: Size(300, 80), backgroundColor: lightOrange),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => ContactUs()),
+                      //  MaterialPageRoute(builder: (context) => Tester()),
+                    );
+                  },
+                  child: const Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(
+                        Icons.phone,
+                        color: textColor,
+                      ),
+                      SizedBox(width: 20),
+                      Text(
+                        'Contact Us',
+                        style: TextStyle(
+                          color: textColor,
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      SizedBox(width: 40),
+                      Icon(
+                        Icons.arrow_right_alt_rounded,
+                        color: textColor,
+                        size: 40,
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ]),
       ),
     );
   }
 
   Widget buildProfileTab() {
     return Center(
-      child: Text('Profile'),
+      child: Container(
+        alignment: Alignment.center,
+        color: primaryBackGround,
+        child: Column(
+          children: [
+            SizedBox(
+              height: 300,
+            ),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                fixedSize: Size(300, 80),
+                backgroundColor: violat,
+              ),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => InfoPage()),
+                );
+              },
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(
+                    Icons.medication_liquid,
+                    color: textColor,
+                  ),
+                  SizedBox(width: 20),
+                  Text(
+                    'Info',
+                    style: TextStyle(
+                      color: textColor,
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  SizedBox(width: 20),
+                  Icon(
+                    Icons.arrow_right_alt_rounded,
+                    color: textColor,
+                    size: 40,
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: 30,
+            ),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                fixedSize: Size(300, 80),
+                backgroundColor: lightCyan,
+              ),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => ProtocolSchedule()),
+                );
+              },
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(
+                    Icons.medical_services_sharp,
+                    color: textColor,
+                  ),
+                  SizedBox(width: 20),
+                  Text(
+                    'Protocol Schedule',
+                    style: TextStyle(
+                      color: textColor,
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  SizedBox(width: 20),
+                  Icon(
+                    Icons.arrow_right_alt_rounded,
+                    color: textColor,
+                    size: 40,
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: 30,
+            ),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                fixedSize: Size(300, 80),
+                backgroundColor: lightOrange,
+              ),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => SideEffectHistory()),
+                );
+              },
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(
+                    Icons.phone,
+                    color: textColor,
+                  ),
+                  SizedBox(width: 20),
+                  Text(
+                    'Side Effects history',
+                    style: TextStyle(
+                      color: textColor,
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  SizedBox(width: 20),
+                  Icon(
+                    Icons.arrow_right_alt_rounded,
+                    color: textColor,
+                    size: 40,
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
